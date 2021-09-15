@@ -1,7 +1,5 @@
-import * as fs from "fs";
-export const createDirectoryIfItDoesNotExist = (dir: string) => {
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, {recursive: true});
-    }
-}
-
+export * from './fs-wrapper';
+export * from './constants';
+export * from './node-sp-auth';
+export * from './cheerio-wrapper';
+export * from './web-utils'
