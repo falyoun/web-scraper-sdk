@@ -1,0 +1,45 @@
+{
+  "name": "web-scaper-sdk",
+  "version": "1.0.0",
+  "description": "This library written in JS",
+  "private": false,
+  "author": "Abdulrahman Falyoun",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "files": [
+    "/lib"
+  ],
+  "scripts": {
+    "pre-publish": "yarn format && yarn build",
+    "build": "yarn build:esm && yarn build:cjs",
+    "build:esm": "tsc && tscpaths -p tsconfig.json -s ./src -o ./lib/esm",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs && tscpaths -p tsconfig.json -s ./src -o ./lib/cjs",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prebuild": "rimraf dist",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest --detectOpenHandles",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config src/test/jest-e2e.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/lynx-falyoun/web-scraper-sdk.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lynx-falyoun/web-scraper-sdk/issues"
+  },
+  "homepage": "https://github.com/lynx-falyoun/web-scraper-sdk#readme",
+  "dependencies": {
+    "node-sp-auth-config": "^3.0.1",
+    "puppeteer": "^10.2.0",
+    "typescript": "^4.4.3"
+  }
+}
