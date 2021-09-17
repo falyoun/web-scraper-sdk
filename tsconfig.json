@@ -35,6 +35,12 @@
       ],
       "@app/scraper": [
         "src/scraper"
+      ],
+      "@app/authentication": [
+        "src/authentication"
+      ],
+      "@app/test-cases": [
+        "src/test-cases"
       ]
     }
   },
