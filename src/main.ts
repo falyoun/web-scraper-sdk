@@ -1,12 +1,10 @@
-import * as puppeteer from 'puppeteer';
-import * as minimist from 'minimist';
+import puppeteer from 'puppeteer';
 import {config} from 'dotenv';
-import * as fs from 'fs';
+import fs from 'fs';
 import {SharePointsNames, SNAPSHOTS_DIRECTORY} from "@app/utils";
 import {authPuppeteer} from "@app/authentication";
 import {registerPageEvents} from "@app/scraper";
 import {IArgs} from "@app/interfaces";
-
 
 
 
