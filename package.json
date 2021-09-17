@@ -1,6 +1,6 @@
 {
   "name": "web-scraper-sdk",
-  "version": "1.0.3",
+  "version": "1.0.1",
   "description": "This library written in Typescript to take snapshots for microsoft share points",
   "private": false,
   "author": "Abdulrahman Falyoun",
