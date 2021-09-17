@@ -1,7 +1,7 @@
 {
-  "name": "web-scaper-sdk",
-  "version": "1.0.3",
-  "description": "This library written in JS",
+  "name": "web-scraper-sdk",
+  "version": "1.0.1",
+  "description": "This library written in Typescript to take snapshots for microsoft share points",
   "private": false,
   "author": "Abdulrahman Falyoun",
   "main": "./lib/cjs/index.js",
