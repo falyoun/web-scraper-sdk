@@ -128,7 +128,7 @@ export const registerPageEvents = async (page: puppeteer.Page) => {
       }
     });
     page.on("requestfailed", nextRequest);
-  } catch (e) {
-    console.log("Error [Signed in page]: ", e.message || e);
+  } catch (e: any) {
+    console.log("Error [Signed in page]: ", e?.message || e);
   }
 };

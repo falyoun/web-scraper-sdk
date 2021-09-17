@@ -8,16 +8,12 @@ import {registerPageEvents} from "@app/scraper";
 import {IArgs} from "@app/interfaces";
 
 
-config(); // parse local .env if any
-const {headless, configPath, executablePath, removeJS, website, snapshot} = minimist(process.argv.slice(2)) as IArgs;
-
-console.log(website)
-if (!website || SharePointsNames.indexOf(website) === -1) {
-    throw new Error(`Website's ${website} is required and it should be one of the values [${SharePointsNames}]`)
-}
 
 
-const takeSnapshot = async () => {
+const takeSnapshot = async (iArgs: IArgs) => {
+
+    const {headless, configPath, executablePath, removeJS, website} = iArgs;
+
     // Optional window and viewport dimensions config
     const width = 1920;
     const height = 1080;
@@ -58,13 +54,12 @@ const takeSnapshot = async () => {
                 console.log('running ', runPath);
                 const {run} = await import(`./test-cases/${runPath}`);
                 await run(page, siteUrl, website, JSON.parse(removeJS as any), JSON.parse(headless as any));
-            } catch (ex) {
-                console.log(`Error: ${ex.message}`);
+            } catch (ex: any) {
+                console.log(`Error: ${ex?.message || ex}`);
             }
         }
-
-    } catch (ex) {
-        console.log(`Error: ${ex.message}`);
+    } catch (ex: any) {
+        console.log(`Error: ${ex?.message || ex}`);
     } finally {
         // await browser.close();
     }
@@ -107,14 +102,20 @@ const consumeAlreadySnapshot = (website: typeof SharePointsNames[number]) => {
     console.log("\n======================================================================\n\n");
 
 }
-(async () => {
+
+export const scrape = async (scrapeOptions: IArgs) => {
+    config(); // parse local .env if any
+    const {website, snapshot} = scrapeOptions;
+
+    if (!website || SharePointsNames.indexOf(website) === -1) {
+        throw new Error(`Website's ${website} is required and it should be one of the values [${SharePointsNames}]`)
+    }
 
     console.time('Execution time');
     if (JSON.parse(snapshot as any) === true) {
-        await takeSnapshot();
+        await takeSnapshot(scrapeOptions);
     } else {
         consumeAlreadySnapshot(website);
     }
     console.timeEnd('Execution time');
-})()
-    .catch(console.warn);
+}
